@@ -1,0 +1,66 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7fafc; /* Light gray background */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #3b82f6; /* Blue color for the heading */
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.container {
+    background-color: #ffffff; /* White background for the container */
+    border-radius: 0.5rem; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 2rem;
+    max-width: 400px; /* Maximum width for the container */
+    margin: auto; /* Center the container */
+}
+
+label {
+    display: block;
+    color: #4a5568; /* Dark gray color for labels */
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+select {
+    width: 100%; /* Full width for inputs and selects */
+    padding: 0.5rem;
+    border: 1px solid #cbd5e0; /* Light gray border */
+    border-radius: 0.25rem; /* Rounded corners */
+    margin-bottom: 1rem; /* Space below inputs */
+}
+
+button {
+    background-color: #48bb78; /* Green background for buttons */
+    color: white; /* White text color */
+    padding: 0.5rem 1rem; /* Padding for buttons */
+    border: none; /* No border */
+    border-radius: 0.25rem; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 100%; /* Full width for buttons */
+}
+
+button:hover {
+    background-color: #38a169; /* Darker green on hover */
+}
+
+#qrcode-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem; /* Space below QR code container */
+}
+
+#qrcode-container img {
+    margin-bottom: 1rem;
+    max-width: 256px; /* Limit the maximum size of the QR code image */
+    max-height: 256px;
+}
+
+#qrcode-container canvas {
+    display: none; /* Hide the canvas element */
+}

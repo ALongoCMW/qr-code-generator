@@ -1,0 +1,23 @@
+{
+  "name": "qr-code-web-app",
+  "version": "1.0.0",
+  "description": "A web app for generating QR codes using the Uniqode API.",
+  "main": "public/scripts/app.js",
+  "scripts": {
+    "start": "live-server public",
+    "build": "echo 'Build step can be added here.'"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "keywords": [
+    "qr-code",
+    "generator",
+    "web-app"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
