@@ -1,12 +1,3 @@
-const textInput = document.getElementById('text');
-const qrcodeContainer = document.getElementById('qrcode-container');
-const qrcodeCanvas = document.getElementById('qrcode');
-const qrcodeImage = document.getElementById('qrcode-image');
-const formatSelect = document.getElementById('format');
-const generateButton = document.getElementById('generate');
-const uniqodeApiKey = "641fbfc233c119686a62bc32dbeb9657a7521a04";
-const uniqodeOrganizationId = "638820"; // Add Organization ID
-
 function generateQRCode(text) {
     if (!uniqodeApiKey) {
         alert("Please provide your Uniqode API key in the code.");
@@ -17,18 +8,40 @@ function generateQRCode(text) {
     const apiUrl = `https://api.uniqode.com/api/2.0/qrcodes/`;
 
     const requestBody = {
-        name: "Dynamic QR Code", // Required name for the QR code
-        text: text, // Text/URL to encode
-        format: format // Desired format (png, jpeg, svg)
+        name: "Custom URL", // Name for the QR code
+        organization: parseInt(uniqodeOrganizationId), // Organization ID
+        qr_type: 2, // QR code type (dynamic)
+        campaign: {
+            content_type: 1, // Content type (e.g., URL)
+            custom_url: text // The URL or text to encode
+        },
+        location_enabled: false, // Disable location tracking
+        attributes: {
+            color: "#2595ff",
+            colorDark: "#2595ff",
+            margin: 80,
+            isVCard: false,
+            frameText: "UNIQODE",
+            logoImage: "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50",
+            logoScale: 0.1992,
+            frameColor: "#2595FF",
+            frameStyle: "banner-bottom",
+            logoMargin: 10,
+            dataPattern: "square",
+            eyeBallShape: "circle",
+            gradientType: "none",
+            eyeFrameColor: "#2595FF",
+            eyeFrameShape: "rounded"
+        }
     };
 
     fetch(apiUrl, {
-        method: 'POST', // Use POST for dynamic QR codes
+        method: 'POST',
         headers: {
-            'Authorization': `Bearer ${uniqodeApiKey}`,
+            'Authorization': `Token ${uniqodeApiKey}`, // Updated header format
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(requestBody) // Send parameters in the request body
+        body: JSON.stringify(requestBody)
     })
     .then(response => {
         if (!response.ok) {
@@ -50,28 +63,3 @@ function generateQRCode(text) {
         qrcodeCanvas.style.display = 'none';
     });
 }
-
-function downloadQRCode(blobUrl, format) {
-    const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = `qrcode.${format}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(blobUrl);
-}
-
-generateButton.addEventListener('click', () => {
-    const text = textInput.value.trim();
-    if (text) {
-        generateQRCode(text);
-    } else {
-        alert('Please enter text or URL to generate QR Code.');
-    }
-});
-
-textInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        generateButton.click();
-    }
-});
